@@ -5,48 +5,8 @@ import Shimmer from "./Shimmer";
 const Body = () => {
   // State variable - Super powerfull variable for dom manipulation
   const [restaurantList, setRestaurantList] = useState([]);
-  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
+  var [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
-
-  // normal JS variable
-  // let listOfRestaurant = [
-  //   {
-  //     type: "restaurant",
-  //     data: {
-  //       id: 53656,
-  //       name: "KFC",
-  //       cuisine: ["Burger", "Fast Food", "Snacks"],
-  //       rating: 4.3,
-  //     },
-  //   },
-  //   {
-  //     type: "restaurant",
-  //     data: {
-  //       id: 53657,
-  //       name: "Dominos",
-  //       cuisine: ["Pizza", "Fast Food", "Snacks"],
-  //       rating: 3.8,
-  //     },
-  //   },
-  //   {
-  //     type: "restaurant",
-  //     data: {
-  //       id: 53658,
-  //       name: "Wow Momos",
-  //       cuisine: ["Chinese", "Fast Food", "Snacks"],
-  //       rating: 3.2,
-  //     },
-  //   },
-  //   {
-  //     type: "restaurant",
-  //     data: {
-  //       id: 53659,
-  //       name: "MacD",
-  //       cuisine: ["Burger", "Fast Food", "Snacks"],
-  //       rating: 4.2,
-  //     },
-  //   },
-  // ];
 
   useEffect(() => {
     fetchData();
@@ -90,6 +50,7 @@ const Body = () => {
               if (filteredRestaurant.length == 0) {
                 setFilteredRestaurantList(restaurantList);
               } else {
+                console.log(filteredRestaurant);
                 setFilteredRestaurantList(filteredRestaurant);
               }
             }}
@@ -101,8 +62,9 @@ const Body = () => {
           className="rest-btn"
           onClick={() => {
             top_rated_restaurant_list = restaurantList.filter(
-              (res) => res.info.avgRating > 4.3
+              (res) => res.info.avgRating > 4.1
             );
+            console.log(top_rated_restaurant_list);
             setFilteredRestaurantList(top_rated_restaurant_list);
           }}
         >
