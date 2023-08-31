@@ -7,23 +7,18 @@ const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   var [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
- 
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData = () => {
-    const json = require("./rest_list.json");
-    for (i = 0; i < json.data.cards.length; i++) {
-      if (json.data.cards[i].card.card.id === "top_brands_for_you") {
-        setRestaurantList(
-          json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants
-        );
-        setFilteredRestaurantList(
-          json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants
-        );
-      }
-    }
+  const fetchData = async () => {
+    // const json = require("./rest_list.json");
+    const data = await fetch("http://127.0.0.1:8000/restaurants/");
+    const rest_list = await data.json();
+    console.log(rest_list);
+    setRestaurantList(rest_list.restaurant_list);
+    setFilteredRestaurantList(rest_list.restaurant_list);
   };
 
   if (filteredRestaurantList.length === 0) {
