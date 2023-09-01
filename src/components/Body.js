@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   // State variable - Super powerfull variable for dom manipulation
@@ -16,7 +17,6 @@ const Body = () => {
     // const json = require("./rest_list.json");
     const data = await fetch("http://127.0.0.1:8000/restaurants/");
     const rest_list = await data.json();
-    console.log(rest_list);
     setRestaurantList(rest_list.restaurant_list);
     setFilteredRestaurantList(rest_list.restaurant_list);
   };
@@ -45,7 +45,6 @@ const Body = () => {
               if (filteredRestaurant.length == 0) {
                 setFilteredRestaurantList(restaurantList);
               } else {
-                console.log(filteredRestaurant);
                 setFilteredRestaurantList(filteredRestaurant);
               }
             }}
@@ -59,7 +58,6 @@ const Body = () => {
             top_rated_restaurant_list = restaurantList.filter(
               (res) => res.info.avgRating > 4.1
             );
-            console.log(top_rated_restaurant_list);
             setFilteredRestaurantList(top_rated_restaurant_list);
           }}
         >
@@ -69,7 +67,12 @@ const Body = () => {
 
       <div className="rest-container">
         {filteredRestaurantList.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
