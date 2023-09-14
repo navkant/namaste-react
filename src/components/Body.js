@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // State variable - Super powerfull variable for dom manipulation
@@ -15,11 +16,21 @@ const Body = () => {
 
   const fetchData = async () => {
     // const json = require("./rest_list.json");
-    const data = await fetch("http://127.0.0.1:8000/restaurants/");
+    const data = await fetch("http://127.0.0.1:8000/restaurants/", {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
     const rest_list = await data.json();
     setRestaurantList(rest_list.restaurant_list);
     setFilteredRestaurantList(rest_list.restaurant_list);
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return <h1>Looks like you are offline, check ur internet connection</h1>;
+  }
 
   if (filteredRestaurantList.length === 0) {
     return <Shimmer />;

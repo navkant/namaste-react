@@ -1,5 +1,4 @@
 import StyleCard from "./StyleCard";
-import { REST_IMG_URL } from "../utils/constants";
 import { CLOUDINARY_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
