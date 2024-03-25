@@ -1,2 +1,0 @@
-# namaste-react
-learning react
