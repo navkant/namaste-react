@@ -1,0 +1,26 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "this is namaste react",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navkant/namaste-react.git"
+  },
+  "keywords": [
+    "namaste-react",
+    "navkant"
+  ],
+  "author": "navkant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/navkant/namaste-react/issues"
+  },
+  "homepage": "https://github.com/navkant/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
