@@ -1,44 +1,109 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// React Element using JSX
-const jsxheading = (
-  <div id="parent">
-    <div id="child">
-      <h1>Namaste React using JSX 🚀</h1>
-    </div>
-  </div>
-);
 
-// React components
-// class based components - Old
-// function based components - New
-
-const HeadingComponent = () => {
-  return <h1> Namaste React Function Component 🚀</h1>;
-};
-
-const Title = () => {
+const Header = () => {
   return (
-    <h1 className="head" tabIndex="5">
-      Namaste React using JSX
-    </h1>
-  );
-};
+    <div className="header">
+      <div className="logo-container">
+        <img className="logo" src="https://icon-library.com/images/food-app-icon/food-app-icon-0.jpg" />
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  )
+}
 
-const number = 1000;
+const RestaurantCard = () => {
+  return (
+    <div className="res-card">
+      <img
+        className="res-logo"
+        alt="res-logo"
+        src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ulfsz78zsp4owhrf0wfy"
+      />
+      <h3>Meghana Foods</h3>
+      <h4>Biryani, North Indian, Asian</h4>
+      <h4>4.4 stars</h4>
+      <h4>30 min</h4>
+    </div>
+  )
+}
 
-const HeadingComponent1 = () => (
-  <div>
-    {/* below three lines mean same thing */}
-    <Title />
-    <Title></Title>
-    {Title()}
-    <h2> {number*3} </h2>
-    <h1 className="heading">Namaste React Functional Component</h1>
-  </div>
-);
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+      </div>
+    </div> 
+  )
+}
+
+
+const AppLayout = () => {
+  return (
+    <div className="app"> 
+      <Header />
+      <Body />
+    </div>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent1 />);
+root.render(<AppLayout />);
