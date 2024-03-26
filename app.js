@@ -26,9 +26,15 @@ const Title = () => {
   );
 };
 
+const number = 1000;
+
 const HeadingComponent1 = () => (
   <div>
+    {/* below three lines mean same thing */}
     <Title />
+    <Title></Title>
+    {Title()}
+    <h2> {number*3} </h2>
     <h1 className="heading">Namaste React Functional Component</h1>
   </div>
 );
