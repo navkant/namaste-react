@@ -1,12 +1,14 @@
 import RestaurantCard from "./Restaurant";
 import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
+import Caraousel from "./Caraousel";
 
 const Body = () => {
   // local state variable
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
 
   useEffect(() => {
-    console.log("use effect called !!");
+    console.log("body rendered!");
     fetchData();
   }, []);
 
@@ -16,8 +18,14 @@ const Body = () => {
     setListOfRestaurant(json.restaurant_list);
   };
 
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
+  }
+
   return (
     <div className="body">
+      <Caraousel />
+
       <div className="filter">
         <button
           className="filter-btn"
@@ -26,7 +34,6 @@ const Body = () => {
             setListOfRestaurant(
               listOfRestaurants.filter((res) => res.info.avgRating >= 4.2)
             );
-            console.log(listOfRestaurants);
           }}
         >
           Top Rated
