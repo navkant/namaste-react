@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   var [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -23,6 +24,7 @@ const Body = () => {
     });
     const rest_list = await data.json();
     setRestaurantList(rest_list.restaurant_list);
+    console.log(rest_list);
     setFilteredRestaurantList(rest_list.restaurant_list);
   };
 
@@ -38,17 +40,18 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="filter">
+      <div className="flex justify-center ">
         <div className="search">
           <input
             type="text"
-            className="search-box"
+            className="border m-1"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+            className="bg-green-100 m-2 px-2 rounded-lg"
             onClick={() => {
               const filteredRestaurant = restaurantList.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -64,7 +67,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="rest-btn"
+          className="bg-green-100 m-2 px-2 rounded-lg"
           onClick={() => {
             top_rated_restaurant_list = restaurantList.filter(
               (res) => res.info.avgRating > 4.1
@@ -76,13 +79,17 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="rest-container">
+      <div className="flex flex-wrap justify-center ">
         {filteredRestaurantList.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {restaurant.info.promoted ? (
+              <RestaurantCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
