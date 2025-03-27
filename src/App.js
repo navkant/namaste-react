@@ -13,7 +13,7 @@ import { lazy } from "react";
 const Grocery = lazy(() => import("./components/Groceries"));
 
 const AppLayout = () => {
-  return (
+  return ( 
     <div className="app">
       <Header />
       <Outlet />
