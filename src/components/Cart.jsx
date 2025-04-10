@@ -21,6 +21,7 @@ const Cart = () => {
     return (
         <div className="flex justify-center">
             <div className=" w-6/12 flex flex-col">
+                <div className="m-4 text-2xl text-center font-bold">CART</div>
                 {cartItems.map((item) => {
                     return (
                         <div

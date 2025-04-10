@@ -39,7 +39,7 @@ const Item = ({ items }) => {
                             </button>
                         </div>
                         <img
-                            className="rounded-lg object-contain w-28"
+                            className="rounded-lg object-cover w-28 h-20"
                             src={CLOUDINARY_URL + item.card.info.imageId}
                             alt="rest-logo"
                         />
