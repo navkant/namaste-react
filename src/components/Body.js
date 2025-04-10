@@ -1,8 +1,9 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userContext";
 
 const Body = () => {
     // State variable - Super powerfull variable for dom manipulation
@@ -15,17 +16,15 @@ const Body = () => {
         fetchData();
     }, []);
 
+    const { loggedInUser, setUserName } = useContext(UserContext);
+
     const fetchData = async () => {
         // const json = require("./rest_list.json");
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.57590&lng=77.33450&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.696339&lng=77.436638&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
         const rest_list = await data.json();
 
-        console.log(
-            rest_list.data.cards[4].card.card.gridElements.infoWithStyle
-                .restaurants
-        );
         setRestaurantList(
             rest_list.data.cards[4].card.card.gridElements.infoWithStyle
                 .restaurants
@@ -80,17 +79,31 @@ const Body = () => {
                         Search
                     </button>
                 </div>
-                <button
-                    className="bg-green-100 m-2 px-2 rounded-lg"
-                    onClick={() => {
-                        top_rated_restaurant_list = restaurantList.filter(
-                            (res) => res.info.avgRating > 4.1
-                        );
-                        setFilteredRestaurantList(top_rated_restaurant_list);
-                    }}
-                >
-                    Top Rated
-                </button>
+                <div>
+                    <button
+                        className="bg-green-100 m-2 px-2 rounded-lg"
+                        onClick={() => {
+                            top_rated_restaurant_list = restaurantList.filter(
+                                (res) => res.info.avgRating > 4.1
+                            );
+                            setFilteredRestaurantList(
+                                top_rated_restaurant_list
+                            );
+                        }}
+                    >
+                        Top Rated
+                    </button>
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        className="border m-1"
+                        value={loggedInUser}
+                        onChange={(e) => {
+                            setUserName(e.target.value);
+                        }}
+                    />
+                </div>
             </div>
 
             <div className="flex flex-wrap justify-center ">
