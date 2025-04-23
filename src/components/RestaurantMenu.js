@@ -5,14 +5,14 @@ import ItemCategory from "./ItemsCategory";
 import { useState } from "react";
 
 const RestaurantMenu = () => {
+    const [visibleCategoryIndex, setvisibleCategoryIndex] = useState(0);
     const { restId } = useParams();
     const restInfo = useRestaurantMenu(restId);
-    const [visibleCategoryIndex, setvisibleCategoryIndex] = useState(0);
 
     if (restInfo === null) return <Shimmer />;
 
     categories = restInfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
-    const itemCategories = categories.filter(
+    var itemCategories = categories.filter(
         (c) =>
             c.card?.card?.["@type"] ===
             "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -33,6 +33,16 @@ const RestaurantMenu = () => {
                 <p>
                     {restInfo.data.cards[2].card.card.info.cuisines.join(", ")}
                 </p>
+                <div className="w-6/12 mx-auto mt-4 flex justify-center">
+                    <div className="w-96 flex  justify-between">
+                        <div className="bg-black text-white p-2 rounded-lg">
+                            <button>Veg filter</button>
+                        </div>
+                        <div className="bg-black text-white p-2 rounded-lg">
+                            <button>Non-Veg Filter</button>
+                        </div>
+                    </div>
+                </div>
                 {itemCategories.map((category, index) => (
                     <ItemCategory
                         key={category.categoryId}

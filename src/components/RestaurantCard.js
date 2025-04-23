@@ -18,7 +18,7 @@ const RestaurantCard = (props) => {
                 <h4 className=" font-bold py-1 text-lg ">
                     {props.resData.info.name}
                 </h4>
-                <h5 className="flex flex-wrapp ">
+                <h5 className="flex flex-wrap">
                     {props.resData.info.cuisines.splice(0, 3).join(", ")}
                 </h5>
                 <h6>{props.resData.info.avgRating} stars</h6>

@@ -24,3 +24,22 @@ You can fix CORS issue by install CORS extension in you browser,
 - Slice(card slice)
 - dispatch action
 - selector
+
+
+# types of testing    
+- unit testing ✅
+- Integration testing ✅
+- end to end testing ❌
+
+
+# setting up testing in our react app
+- Install react testing library
+- Install jest
+- Install babel dependencies
+- Configure babel in babel.config.js
+- Configure parcel config file to disable default babel transpilation
+- Configure jest: npx jest --init
+- Install jsdom library
+- Install @babel/preset-react to make jsx work in test cases
+- Include @babel/preset-react inside the babel.config
+- Install @testing-library/jest-dom
