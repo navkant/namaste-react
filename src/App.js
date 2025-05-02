@@ -13,6 +13,8 @@ import UserContext from "./utils/userContext";
 import { Provider } from "react-redux";
 import appStore from "./utils/AppStore";
 import Cart from "./components/Cart";
+import Playground from "./components/Playground";
+import { StrictMode } from "react";
 
 const Grocery = lazy(() => import("./components/Groceries"));
 
@@ -66,6 +68,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart />,
+            },
+            {
+                path: "/playground",
+                element: <Playground />,
             },
         ],
     },

@@ -47,6 +47,10 @@ const Header = () => {
                         <Link to="/cart">🛒</Link>
                         {cart.length}
                     </li>
+                    <li className="px-2">
+                        <Link to="/playground">Playground</Link>
+                    </li>
+
                     <button
                         className="log-btn"
                         onClick={() => {
